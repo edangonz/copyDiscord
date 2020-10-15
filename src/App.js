@@ -63,7 +63,7 @@ export default function App() {
 
   return (
     <div className="App">
-      {/*<Wait show_wait={show_wait} />*/}
+      <Wait show_wait={show_wait} />
       <Router>
         <div className="ChatRoom">
           {user && <Contact

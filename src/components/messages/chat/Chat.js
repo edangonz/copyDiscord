@@ -11,8 +11,8 @@ export default class Chat extends React.Component{
         super(props)
         
         this.state = {
-            chat_data: undefined,
             previous_id_chat: undefined,
+            list_messages: [],
         };
 
         this.getData = this.getData.bind(this);
@@ -22,9 +22,9 @@ export default class Chat extends React.Component{
         getDataChat(this.props.friend.id_chat)
             .then((response) => {
                 if(response.code === 500){
-                    this.setState({chat_data: response.body, previous_id_chat: response.body.previous_id_chat})
+                    this.setState({list_messages: response.body.list_messages, previous_id_chat: response.body.previous_id_chat})
                     ChatService.setChat(response.body, this.props.friend._id);
-                    if(this.state.chat_data.list_messages.length < 20)
+                    if(this.state.list_messages.length < 20)
                         this.getPreviousDataChat();
                     this.messagesEnd.scrollTo(0, this.messagesEnd.scrollHeight);
                 }
@@ -35,8 +35,8 @@ export default class Chat extends React.Component{
         getDataChat(this.state.previous_id_chat)
             .then((response) => {
                 if(response.code === 500){
-                    this.state.chat_data.list_messages = [...response.body.list_messages, ...this.state.chat_data.list_messages];
-                    this.setState({chat_data: this.state.chat_data, previous_id_chat: response.body.previous_id_chat})
+                    this.chat_data.list_messages = [...response.body.list_messages, ...this.chat_data.list_messages];
+                    this.setState({list_messages: this.chat_data.list_messages, previous_id_chat: response.body.previous_id_chat})
                     this.messagesEnd.scrollTo(0, document.body.scrollHeight);
                 }
             });
@@ -53,7 +53,7 @@ export default class Chat extends React.Component{
         this.timeset = setTimeout(() => this.getData(), 250);
         this.observable = subject_chat$.asObservable()
             .subscribe(() => {
-                this.setState({chat_data: this.state.chat_data})
+                this.setState({list_messages: this.chat_data.list_messages})
                 if(this.messagesEnd)
                     setTimeout(() => this.messagesEnd.scrollTo(0, this.messagesEnd.scrollHeight), 100);
             });
@@ -78,7 +78,7 @@ export default class Chat extends React.Component{
                 <div className="container-messages__chat"
                     onScroll={(e) => this.getMoreData(e)}
                     ref={(el) => { this.messagesEnd = el }}>
-                    {this.state.chat_data && this.state.chat_data.list_messages.map((m, index) => 
+                    {this.state.list_messages && this.state.list_messages.map((m, index) => 
                     <div className={`container-messages__chat__message ${(m.onwer!==this.props.friend._id)?'onwer_container':''}`}
                         key={index}>
                         <img src={logo} alt="profile user"/>
