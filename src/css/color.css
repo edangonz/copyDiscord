@@ -1,0 +1,17 @@
+:root{
+    --main: #36393f;
+    --secondary: #303339;
+    --shadow: #222428;
+    --contact: #2f3136;
+    --profile: #292b2f;
+  
+    --background: #202225;
+  
+    --font-primary: #ffffff;
+    --font-secondary: #b9bbbe;
+    --blue: #7289da;
+    --red: #f04747;
+    --green: #43b581;
+    --orange: #faa61a;
+    --blue-hover: #677bc4;
+  }

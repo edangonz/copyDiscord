@@ -1,0 +1,26 @@
+.SignIn{
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-login{
+    width: 576px;
+    max-width: 90vw;
+    z-index: 10;
+}
+
+.error{
+    color: var(--red);
+}
+
+@media (max-width: 576px) {
+    .form-login{
+        width: 100vw;
+        height: 100vh;
+    }
+}

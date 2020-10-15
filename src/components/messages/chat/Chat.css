@@ -1,0 +1,114 @@
+.container-messages{
+    height: 88vh;
+    flex-grow: 1;
+    box-sizing: border-box;
+    background-color: var(--main);
+}
+
+.container-messages__title{
+    margin: 0;
+    padding: 1rem 1.25rem;
+    color: var(--font-primary);
+    border-bottom: 1px solid rgba(0,0,0,0.3);
+}
+
+.container-messages__title div{
+    display: inline-block;
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: green;
+}
+
+.container-messages__chat{
+    display: flex;
+    flex-direction: column;
+    padding: 0.5rem;
+    overflow-y: scroll;
+    max-height: 80vh;
+}
+
+.container-messages__chat__message{
+    display: flex;
+    align-items: center;
+    padding: 5px 72px;
+    position: relative;
+}
+
+.container-messages__chat__message:hover{
+    border-radius: 4px;
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.container-messages__chat__message img{
+    width: 60px;
+    height: 60px;
+    display: none;
+    position: absolute;
+    left: 0;
+}
+
+.container-messages__chat__message.onwer_container + .container-messages__chat__message,
+.container-messages__chat__message + .container-messages__chat__message.onwer_container{
+    margin-top: 15px;
+}
+
+.container-messages__chat__message.onwer_container + .container-messages__chat__message h4,
+.container-messages__chat__message + .container-messages__chat__message.onwer_container h4,
+.container-messages__chat__message:first-child h4{
+    display: block;
+}
+
+.container-messages__chat__message.onwer_container + .container-messages__chat__message img,
+.container-messages__chat__message + .container-messages__chat__message.onwer_container img,
+.container-messages__chat__message:first-child img{
+    display: inline-block;
+}
+
+.container-messages__chat__message.onwer_container + .container-messages__chat__message.onwer_container img{
+    display: none;
+}
+
+.container-messages__chat__message.onwer_container + .container-messages__chat__message.onwer_container h4{
+    display: none;
+}
+
+.container-messages__chat__message.onwer_container + .container-messages__chat__message.onwer_container{
+    margin-top: 0px;
+}
+
+
+.container-messages__chat__message__body h4{
+    margin: 0;
+    padding-bottom: 0.4rem;
+    display: none;
+}
+
+.container-messages__chat__message__body h4 span{
+    margin-left: 1rem;
+    opacity: 0.5;
+    font-weight: lighter;
+}
+
+.container-messages__chat__message__body p{
+    margin: 0;
+}
+
+@media (max-width: 768px) { 
+    .container-messages{
+        max-height: 82vh;
+    }
+
+    .container-messages__chat{
+        max-height: 73vh;
+    }
+    
+    .container-messages__chat__message{
+        padding: 3px 60px;
+    }
+
+    .container-messages__chat__message img{
+        width: 55px;
+        height: 55px;
+    }
+}

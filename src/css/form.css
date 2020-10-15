@@ -1,0 +1,99 @@
+form{
+  padding: 1.5rem;
+  box-sizing: border-box;
+}
+
+.form-new-friend{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+  border-radius: 0.3rem;
+  background-color: var(--secondary);
+  color: var(--font-secondary);
+  border: 1px var(--shadow) solid;
+}
+
+.form-new-friend button{
+  margin: 0;
+  width: 300px;
+}
+
+.form-new-friend input{
+  margin: 0;
+  background: none;
+  border: none;
+}
+
+.form-new-friend input:focus{
+  border: none;
+}
+  
+  form label{
+    color: var(--font-secondary);
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+  
+  form input{
+    display: block;
+    padding: 0.75rem;
+    box-sizing: border-box;
+    border-radius: 0.3rem;
+    background-color: var(--secondary);
+    color: var(--font-secondary);
+    border: 1px var(--shadow) solid;
+    margin: 0.5rem 0;
+    margin-bottom: 1rem;
+    outline: none;
+    width: 100%;
+  }
+  
+  form input:focus{
+    border: 1px solid var(--blue-hover);
+    transition: border 250ms;
+  }
+  
+  form button{
+    padding: 0.75rem;
+    box-sizing: border-box;
+    background-color: var(--blue);
+    color: var(--font-primary);
+    width: 100%;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    margin-bottom: 0.5rem;
+  }
+
+  form button.block{
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+  
+  form button:hover{
+    background-color: var(--blue-hover);
+    transition: background-color 250ms;
+  }
+  
+  form h3{
+    color: var(--font-primary);
+    text-align: center;
+    margin: 0.75rem 0;
+  }
+
+@media (max-width: 576px) { 
+  .form-new-friend{
+    flex-direction: column;
+  }
+
+  .form-new-friend input{
+    margin-bottom: 0.5rem;
+  }
+
+  .form-new-friend button{
+    width: 100%;
+  }
+}

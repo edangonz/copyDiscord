@@ -1,0 +1,86 @@
+.container{
+    background-color: var(--contact);
+    height: 100vh;
+    width: 250px;
+
+    position: relative;
+    z-index: 30;
+}
+
+.container-contact{
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding: 0.6rem;
+    flex-direction: column;
+}
+
+.profile{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.container-menu{
+    padding: 0.3rem 0.5rem;
+    box-sizing: border-box;
+}
+
+.menu{
+    padding: 0.5rem;
+    box-sizing: border-box;
+    border-radius: 0.3rem;
+    background-color: rgba(0,0,0,0.5);
+}
+
+.mini-menu{
+    width: 150px;
+    position: absolute;
+    right: 0;
+}
+
+.menu .option{
+    width: 100%;
+    padding: 0.5rem;
+    border-radius: 0.3rem;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-size: 0.9em;
+    color: var(--font-primary);
+}
+
+.menu .option:hover{
+    background-color: rgba(255,255,255, 0.3);
+}
+
+.option.option-delete:hover{
+    background-color: var(--red);
+}
+
+.option.option-delete:hover span{
+    color: var(--font-primary);
+}
+
+.option.option-delete span{
+    color: var(--red);
+}
+
+@media (max-width: 768px) { 
+    .background-button{
+        position: absolute;
+        top: 0;
+        left: 0;
+        background-color: rgba(0, 0, 0, 0.5);
+        height: 100vh;
+        width: 100vw;
+    }
+
+    .container{
+        position: absolute;
+        left: -250px;
+    }
+
+    .seen-menuphone{
+        left: 0;
+    }
+}

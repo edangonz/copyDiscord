@@ -1,0 +1,43 @@
+.container-friend{
+    flex-grow: 1;
+
+    background-color: var(--main);
+}
+
+.menu-friend{
+    color: var(--font-secondary);
+    border-bottom: 1px solid var(--shadow);
+}
+
+.menu-friend__ul{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    box-sizing: border-box;
+    padding: 0.5rem;
+    margin: 0;
+}
+
+.menu-friend__ul li{
+    cursor: pointer;
+    border-radius: 0.3rem;
+    padding: 0.4rem 1rem;
+    list-style-type: none;
+}
+
+.menu-friend__ul li:hover{
+    background-color: var(--shadow);
+}
+
+.selected{
+    color: var(--font-primary);
+    background-color: var(--shadow);
+    opacity: 0.6;
+}
+
+.container-body-friend{
+    padding: 0 1rem;
+    box-sizing: border-box;
+    color: var(--font-primary);
+}

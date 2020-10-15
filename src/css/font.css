@@ -1,0 +1,35 @@
+.font-small{
+    color: var(--font-secondary);
+    font-size: 0.8em;
+  }
+
+.text{
+    color: rgba(255, 255, 255, 0.8);
+    margin: 0;
+}
+
+.text--name{
+    color:var(--font-primary)
+}
+
+.text--mesage{
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.text.text--selected{
+    color: var(--font-primary);
+}
+
+.text--friend{
+    font-weight: bold;
+    color: var(--font-primary);
+}
+
+.title{
+    font-size: 0.8em;
+    text-transform: uppercase;
+}
+
+.title--body{
+    padding: 0.75rem 1rem;
+}
