@@ -1,4 +1,4 @@
-const { getData, getCookie, putData, deleteData } = require("./curl");
+import { getData, getCookie, putData, deleteData } from "./curl";
 
 async function postData(url = '', data = {}) {
     const response = await fetch(url, {
