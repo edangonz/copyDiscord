@@ -1,6 +1,6 @@
-const { getData, getCookie, postData, deleteData } = require("./curl");
+import { getData, getCookie, postData, deleteData } from "./curl";
 
-async function getFriends(){
+const getFriends = async () => {
     let token = getCookie(document.cookie);
     if(token)
         return await getData(process.env.REACT_APP_API+'friend/', {'Content-Type': 'application/json', 'access-token': token});
@@ -8,7 +8,7 @@ async function getFriends(){
         return {error: 1010};
 }
 
-async function deleteFriend(filter){
+const deleteFriend = async (filter) => {
     let token = getCookie(document.cookie);
     if(token)
         return await deleteData(process.env.REACT_APP_API+'friend/', {'Content-Type': 'application/json', 'access-token': token}, filter);
@@ -16,7 +16,7 @@ async function deleteFriend(filter){
         return {error: 1010};
 }
 
-async function searchFriends(filter){
+const searchFriends = async (filter) => {
     let token = getCookie(document.cookie);
     if(token)
         return await postData(process.env.REACT_APP_API+'friend/search/',{'Content-Type': 'application/json', 'access-token': token}, {username: filter});
@@ -24,7 +24,7 @@ async function searchFriends(filter){
         return {error: 1010};
 }
 
-async function sendFriendRequest(user) {
+const sendFriendRequest = async (user) => {
     let token = getCookie(document.cookie);
     if(token)
         return await postData(process.env.REACT_APP_API+'request/', {'Content-Type': 'application/json', 'access-token': token}, user);
@@ -32,7 +32,7 @@ async function sendFriendRequest(user) {
         return {code: 408};
 }
 
-async function getDataChat(filter){
+const getDataChat = async (filter) => {
     let token = getCookie(document.cookie);
     if(token)
         return await postData(process.env.REACT_APP_API+'chat/',{'Content-Type': 'application/json', 'access-token': token}, {id_chat: filter});
@@ -40,7 +40,7 @@ async function getDataChat(filter){
         return {error: 1010};
 }
 
-module.exports = {
+export {
     getFriends,
     searchFriends,
     sendFriendRequest,

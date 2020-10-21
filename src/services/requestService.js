@@ -1,6 +1,6 @@
-const { getData, getCookie, putData, deleteData } = require("./curl");
+import { getData, getCookie, putData, deleteData } from "./curl";
 
-async function getRequestFriend() {
+const getRequestFriend = async () => {
     let token = getCookie(document.cookie);
     if(token)
         return await getData(process.env.REACT_APP_API+'request/', {'Content-Type': 'application/json', 'access-token': token});
@@ -8,7 +8,7 @@ async function getRequestFriend() {
         return {error: 1010};
 }
 
-async function aceptRequestFriend(_id) {
+const aceptRequestFriend = async (_id) => {
     let token = getCookie(document.cookie);
     if(token)
         return await putData(process.env.REACT_APP_API+'request/', {'Content-Type': 'application/json', 'access-token': token}, {_id: _id});
@@ -16,7 +16,7 @@ async function aceptRequestFriend(_id) {
         return {error: 1010};
 }
 
-async function declineRequestFriend(_id) {
+const declineRequestFriend = async (_id) => {
     let token = getCookie(document.cookie);
     if(token)
         return await deleteData(process.env.REACT_APP_API+'request/', {'Content-Type': 'application/json', 'access-token': token}, {_id: _id});
@@ -24,7 +24,7 @@ async function declineRequestFriend(_id) {
         return {error: 1010};
 }
 
-module.exports = {
+export {
     getRequestFriend,
     aceptRequestFriend,
     declineRequestFriend,

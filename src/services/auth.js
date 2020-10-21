@@ -1,6 +1,6 @@
-import { getData, getCookie, putData, deleteData } from "./curl";
+import { getData, getCookie, putData, deleteData } from './curl';
 
-async function postData(url = '', data = {}) {
+const postData = async (url = '', data = {}) => {
     const response = await fetch(url, {
       method: 'POST',
       mode: 'cors',
@@ -14,11 +14,11 @@ async function postData(url = '', data = {}) {
     return response.json();
 }
 
-async function signIn(body){
+const signIn = async (body) => {
     return await postData(process.env.REACT_APP_API+'login/', body);
 }
 
-async function isSignIn(){
+const isSignIn = async () => {
     let token = getCookie(document.cookie);
     if(token)
         return await getData(process.env.REACT_APP_API+'login/', {'Content-Type': 'application/json', 'access-token': token});
@@ -26,17 +26,17 @@ async function isSignIn(){
         return {code: 103};
 }
 
-async function createAccount(body){
+const createAccount = async (body) =>{
     return await postData(process.env.REACT_APP_API+'create/', body);
 }
 
-async function signOut(){
+const signOut = async () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.reload();
     return undefined;
 }
 
-async function openChatConfiguration(_id, id_friend) {
+const openChatConfiguration = async (_id, id_friend) => {
     let token = getCookie(document.cookie);
     if(token)
         return await putData(process.env.REACT_APP_API+'configure/', {'Content-Type': 'application/json', 'access-token': token}, {_id: _id, id_friend: id_friend});
@@ -44,7 +44,7 @@ async function openChatConfiguration(_id, id_friend) {
         return {error: 1010};
 }
 
-async function closeChatConfiguration(_id, id_friend) {
+const closeChatConfiguration = async(_id, id_friend) => {
     let token = getCookie(document.cookie);
     if(token)
         return await deleteData(process.env.REACT_APP_API+'configure/', {'Content-Type': 'application/json', 'access-token': token}, {_id: _id, id_friend: id_friend});
@@ -52,7 +52,7 @@ async function closeChatConfiguration(_id, id_friend) {
         return {error: 1010};
 }
 
-module.exports = {
+export {
     signIn,
     signOut,
     isSignIn,

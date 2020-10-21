@@ -1,6 +1,6 @@
-const { getData, getCookie, deleteData } = require("./curl");
+import { getData, getCookie, deleteData } from "./curl";
 
-async function getNotifications() {
+const getNotifications = async () => {
     let token = getCookie(document.cookie);
     if(token)
         return await getData(process.env.REACT_APP_API+'notification/', {'Content-Type': 'application/json', 'access-token': token});
@@ -8,7 +8,7 @@ async function getNotifications() {
         return {error: 1010};
 }
 
-async function deleteNotification(_id) {
+const deleteNotification = async (_id) => {
     let token = getCookie(document.cookie);
     if(token)
         return await deleteData(process.env.REACT_APP_API+'notification/', {'Content-Type': 'application/json', 'access-token': token}, {_id: _id});
@@ -16,7 +16,7 @@ async function deleteNotification(_id) {
         return {error: 1010};
 }
 
-module.exports = {
-    getNotifications: getNotifications,
-    deleteNotification: deleteNotification,
+export {
+    getNotifications,
+    deleteNotification,
 }

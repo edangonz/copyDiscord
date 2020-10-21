@@ -1,4 +1,4 @@
-async function getData(url = '', header = {}) {
+const getData = async (url = '', header = {}) => {
     const response = await fetch(url, {
       method: 'GET',
       mode: 'cors',
@@ -11,7 +11,7 @@ async function getData(url = '', header = {}) {
     return response.json();
 }
 
-async function postData(url = '',  header = {}, data = {}) {
+const postData = async (url = '',  header = {}, data = {}) => {
     const response = await fetch(url, {
       method: 'POST',
       mode: 'cors',
@@ -25,7 +25,7 @@ async function postData(url = '',  header = {}, data = {}) {
     return response.json();
 }
 
-async function putData(url = '',  header = {}, data = {}) {
+const putData = async (url = '',  header = {}, data = {}) => {
     const response = await fetch(url, {
       method: 'PUT',
       mode: 'cors',
@@ -39,7 +39,7 @@ async function putData(url = '',  header = {}, data = {}) {
     return response.json();
 }
 
-async function deleteData(url = '',  header = {}, data = {}) {
+const deleteData = async (url = '',  header = {}, data = {}) => {
     const response = await fetch(url, {
       method: 'DELETE',
       mode: 'cors',
@@ -53,18 +53,20 @@ async function deleteData(url = '',  header = {}, data = {}) {
     return response.json();
 }
 
-function getCookie(cookie){
-    let str = cookie.split('; ');
-    var result = {};
-    for (var i = 0; i < str.length; i++) {
-        var cur = str[i].split('=');
-        result[cur[0]] = cur[1];
-    }
+const getCookie = (cookie) => {
+  let str = cookie.split('; ');
+  
+  var result = {};
+  
+  for (var i = 0; i < str.length; i++) {
+    var cur = str[i].split('=');
+    result[cur[0]] = cur[1];
+  }
 
-    return result.token;
+  return result.token;
 }
 
-module.exports = {
+export {
   getData,
   getCookie,
   postData,
