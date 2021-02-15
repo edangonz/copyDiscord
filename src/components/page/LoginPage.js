@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import SignIn from '../signin/SignIn';
+
+import {useDispatch, useSelector} from 'react-redux'
+import { singInUserByToken } from '../../redux/user'
 
 import {
     useHistory,
@@ -8,7 +11,6 @@ import {
 } from "react-router-dom";
 
 const { getCookie } =  require('../../services/curl');
-const { signInByToken } = require('../../services/auth');
 
 export default function LoginPage(props){
     let history = useHistory();
@@ -16,17 +18,12 @@ export default function LoginPage(props){
 
     let token = getCookie(document.cookie);
     let { from } = (token?location.state:undefined) || { from: { pathname: "/" } };
+
+    const dispatch = useDispatch();
+    const user = useSelector(store => store.user);
     
-    //aqui el metodo
-    console.log("hola")
-    
-    if(token){
-        signInByToken(token).then((user) => {
-            console.log(user);
-            props.login(user);
-            history.replace(from);
-        });
-    }
+    if(token && !user._id)
+        dispatch(singInUserByToken(history, from));
 
     return <SignIn login={props.login}/>;
   }

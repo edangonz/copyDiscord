@@ -1,15 +1,18 @@
-import React from 'react'
+import React, { useState }  from 'react'
 import {useTransition, animated} from 'react-spring'
 import './Wait.css'
 
 import { Spring } from 'react-spring/renderprops'
 
 export default function Wait (props) {
-    const transitions = useTransition(props.show_wait, null, {
+    const [show_wait, setshow_wait] = useState(true);
+    setTimeout(() => setshow_wait(false), 1750);
+    
+    const transitions = useTransition(props.show_wait && show_wait, null, {
         from: { opacity: 1, width: '0px' },
         enter: { opacity: 1, width: window.innerWidth + 'px' },
         leave: { opacity: 0},
-        })
+    })
 
     return (
     <>

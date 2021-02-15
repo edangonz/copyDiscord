@@ -8,6 +8,8 @@ import Messages from './components/messages/Messages';
 import Friend from './components/friend-page/Friend';
 import Contact from './components/chatroom/contact/Contact';
 
+import {useSelector} from 'react-redux'
+
 import {
   BrowserRouter as Router,
   Switch,
@@ -16,26 +18,21 @@ import {
 } from "react-router-dom";
 
 export default function App() {
-  const [user, setUser] = useState(null);
-  const [show_wait, setshow_wait] = useState(false);
+  //const [user, setUser] = useState(null);
   const [menuphone, setmenuphone] = useState(false);
 
+  const user = useSelector(store => store.user);
+
   const logout = () => {
-    setUser(null);
+    //setUser(null);
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
   }
-
-  const login = (user) => {
-    setshow_wait(true);    
-    setTimeout(() => setUser(user), 250);
-    setTimeout(() => setshow_wait(false), 1750);
-  };
 
   const PrivateRoute = ({ children, ...rest }) => {
     return (
       <Route {...rest}
         render={({ location }) =>
-          user ?
+          user._id ?
             (children)
             :(<Redirect to={{pathname: "/login", state: { from: location }}}/>)
         }
@@ -46,12 +43,10 @@ export default function App() {
   return (
     <div className="App">
 
-      <Wait show_wait={show_wait} />
+      <Wait show_wait={user._id !== undefined} />
 
       <Router>
         <div className="ChatRoom">
-          {user && <p>Esta logeado</p>}
-
             {/*<Contact
               current_user={user}
               logout={logout}
@@ -68,7 +63,7 @@ export default function App() {
               <Switch>
 
                 <Route path="/login">
-                  {!user && <LoginPage login={login}/>}
+                  <LoginPage/>
                 </Route>
 
                 {/*

@@ -1,32 +1,19 @@
-import { getData, getCookie, putData, deleteData } from './curl';
-
-const postData = async (url = '', data = {}) => {
-    const response = await fetch(url, {
-      method: 'POST',
-      mode: 'cors',
-      cache: 'no-cache',
-      credentials: 'same-origin',
-      headers: {'Content-Type': 'application/json'},
-      redirect: 'follow',
-      referrerPolicy: 'no-referrer',
-      body: JSON.stringify(data)
-    });
-    return response.json();
-}
+import { getCookie, putData, deleteData } from './curl';
+import axios from 'axios';
 
 //sign in acount that was provide to username and password
 const signIn = async (username, password) => {
-    return await postData(process.env.REACT_APP_API+'login/', {username: username, password: password});
+    return await axios.post(process.env.REACT_APP_API+'login/', {username: username, password: password});
 }
 
 //sign account by token
-const signInByToken = async (token) => {
-    return getData(process.env.REACT_APP_API+'login/', {'Content-Type': 'application/json', 'access-token': token})
-        .then((response) => (response.code === 101)? response.body : undefined);
+const signInByToken = async () => {
+    let token = getCookie(document.cookie);
+    return await axios.get(process.env.REACT_APP_API+'login/', { headers : {'Content-Type': 'application/json', 'access-token': token} });
 }
 
 const createAccount = async (body) =>{
-    return await postData(process.env.REACT_APP_API+'create/', body);
+    return await axios.get(process.env.REACT_APP_API+'create/', body);
 }
 
 const signOut = async () => {
