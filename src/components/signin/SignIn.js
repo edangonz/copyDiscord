@@ -1,10 +1,10 @@
 import React from 'react'
 import './SignIn.css'
-import Bubbles from '../bubbles/Bubbles'
+import Bubbles from './bubbles/Bubbles'
 
 import { Spring } from 'react-spring/renderprops'
 
-const { isSignIn, signIn, createAccount } = require('../../services/auth');
+const { signIn, createAccount } = require('../../services/auth');
 
 export default class SignIn extends React.Component{
     constructor(props){
@@ -17,37 +17,24 @@ export default class SignIn extends React.Component{
             message: undefined
         }
 
-        this.isSignIn = this.isSignIn.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
         this.onSumitRegister = this.onSumitRegister.bind(this);
-    }
-
-    componentDidMount(){
-        this.isSignIn();
-    }
-    
-    isSignIn(){
-        isSignIn()
-            .then((response) => {
-                if(response.code !== 103 && response.code !== 104)
-                    this.props.login(response.body);
-            });
+        this.replaceMesage = this.replaceMesage.bind(this);
     }
 
     onSubmit(e) {
-        if(e)
-            e.preventDefault();
+        if(e) e.preventDefault();
 
-        signIn({username: this.state.username, password: this.state.password})
+        signIn(this.state.username, this.state.password)
             .then((response) => {
-                if(response.code !== 105) {
+                if(response.code === 100) {
                     document.cookie=`token=${response.body['access-token']}; path=/;`
-                    this.isSignIn();
+                    this.props.login(response.body)
                 } else 
-                    this.setState({ message: 'Credenciales incorrectas' })
+                    this.replaceMesage(105)
             })
-            .catch(() => this.setState({ message: 'Credenciales incorrectas' }));
-    } 
+            .catch(() => this.replaceMesage(105));
+    }
 
     onSumitRegister(e){
         e.preventDefault();
@@ -58,15 +45,32 @@ export default class SignIn extends React.Component{
                     if(response.code === 102)
                         this.onSubmit(undefined);                        
                     else 
-                        this.setState({ message: 'Credenciales incorrectas' });
-                }).catch(() => this.setState({ message: 'Credenciales incorrectas' }));
+                        this.setState(this.replaceMesage(105));
+                }).catch(() => this.replaceMesage(105));
         } else
-            this.setState({ message: 'Ingrese un usuario de al menos 8 caracteres' });
+            this.replaceMesage(109);
+    }
+
+    replaceMesage(code){
+        let message;
+
+        switch (code) {
+            case 105:
+                message = 'Credenciales incorrectas';
+                break;
+            case 109:
+                message = 'Ingrese un usuario de al menos 8 caracteres';
+                break;
+            default :
+                break;
+        }
+
+        this.setState({ message: message })
     }
 
     render(){
         return (
-            <div className="SignIn">
+            <div className="main-container center">
                 <Spring
                     from={{ opacity: 0, transform: 'translateY(-100px)' }}
                     to={{ opacity: 1, transform: 'translateY(0)' }}>

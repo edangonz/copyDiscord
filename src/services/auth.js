@@ -14,16 +14,15 @@ const postData = async (url = '', data = {}) => {
     return response.json();
 }
 
-const signIn = async (body) => {
-    return await postData(process.env.REACT_APP_API+'login/', body);
+//sign in acount that was provide to username and password
+const signIn = async (username, password) => {
+    return await postData(process.env.REACT_APP_API+'login/', {username: username, password: password});
 }
 
-const isSignIn = async () => {
-    let token = getCookie(document.cookie);
-    if(token)
-        return await getData(process.env.REACT_APP_API+'login/', {'Content-Type': 'application/json', 'access-token': token});
-    else
-        return {code: 103};
+//sign account by token
+const signInByToken = async (token) => {
+    return getData(process.env.REACT_APP_API+'login/', {'Content-Type': 'application/json', 'access-token': token})
+        .then((response) => (response.code === 101)? response.body : undefined);
 }
 
 const createAccount = async (body) =>{
@@ -55,7 +54,7 @@ const closeChatConfiguration = async(_id, id_friend) => {
 export {
     signIn,
     signOut,
-    isSignIn,
+    signInByToken,
     createAccount,
     openChatConfiguration,
     closeChatConfiguration,
