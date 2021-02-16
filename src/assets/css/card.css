@@ -1,0 +1,54 @@
+.card{
+  background-color: var(--main);
+  border-radius: 0.3rem;
+  -webkit-box-shadow: 0px 0px 4px 0px var(--shadow);
+  -moz-box-shadow: 0px 0px 4px 0px var(--shadow);
+  box-shadow: 0px 0px 4px 0px var(--shadow);
+}
+
+.card-notification{
+  padding: 0.5rem;
+  box-sizing: border-box;
+  width: 375px;
+  max-width: 92vw;
+  background-color: var(--secondary);
+}
+
+.contact--button {
+  padding: 1rem;
+}
+
+.contact{
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  box-sizing: border-box;
+  border-radius: 0.3rem;
+}
+
+.contact--button:hover, .contact--friend:hover{
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.contact.selected{
+  font-weight: bold;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.contact--friend:hover .username{
+  color: white;
+}
+
+.contact__avatar{
+  width: 50px;
+  height: 50px;
+}
+
+.contact--friend .mini-icon{
+  margin-right: 0.5rem;
+  opacity: 0;
+}
+
+.contact--friend:hover .mini-icon{
+  opacity: 1;
+}

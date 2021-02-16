@@ -8,20 +8,26 @@ export default class FormLogin extends React.Component {
             username: '',
             password: '',
             seen_login: true,
-            message: undefined
         }
 
         this.onSubmit = this.onSubmit.bind(this);
+        this.onSumitRegister = this.onSumitRegister.bind(this);
     }
 
     onSubmit(e){
-        this.props.onSubmit(e, this.state.username, this.state.password);
+        if(e) e.preventDefault();
+        this.props.onSubmit(this.state.username, this.state.password);
+    }
+
+    onSumitRegister(e) {
+        if(e) e.preventDefault();
+        this.props.onSumitRegister(this.state.username, this.state.password);
     }
 
     render() {
         return (
         <form style={this.props.props} className="form-login card"
-            onSubmit={this.state.seen_login?this.onSubmit:this.props.onSumitRegister}>
+            onSubmit={this.state.seen_login?this.onSubmit:this.onSumitRegister}>
             <h3>{ this.state.seen_login? 'Iniciar sesión': 'Registrar cuenta' }</h3>
                 <label htmlFor="username">Usuario</label>
                 <input type="text" placeholder="Usuario" id="username"
@@ -34,7 +40,7 @@ export default class FormLogin extends React.Component {
                 <span className="link"
                     onClick={() => this.setState({seen_login: !this.state.seen_login})}>{this.state.seen_login?' Registrate': ' Inicie sessión'}</span>
                 </span>
-            <p className="font-small error">{this.state.message}</p>
+            <p className="font-small error">{this.props.message}</p>
         </form>
         )
     }

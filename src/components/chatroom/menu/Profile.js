@@ -24,7 +24,7 @@ export default function Profile(props){
     }
 
     return (
-        <div className="profile" onMouseLeave={() => setseenmenu(false)}>
+        <div className="container-profile" onMouseLeave={() => setseenmenu(false)}>
           {transitions.map(({ item, key, props }) =>
             item && <animated.div key={key} style={props} className="container-menu">
               <div className="menu">
@@ -34,8 +34,8 @@ export default function Profile(props){
               </div>
             </animated.div>
           )}
-          <div className="contact contact--profile" onClick={() => setseenmenu(!seenmenu)}>
-            <img className="logo" src={logo} alt="profile potho"/>
+          <div className="contact" onClick={() => setseenmenu(!seenmenu)}>
+            <img className="contact__avatar" src={logo} alt="profile potho"/>
             <span className="text username">{props.current_user.username}</span>
           </div>
         </div>

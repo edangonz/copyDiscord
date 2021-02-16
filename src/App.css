@@ -1,5 +1,10 @@
 @import url('assets/css/grid.css');
 @import url('assets/css/container.css');
+@import url('assets/css/color.css');
+@import url('assets/css/form.css');
+@import url('assets/css/font.css');
+@import url('assets/css/card.css');
+@import url('assets/css/scroll.css');
 
 .App {
   background-color: var(--background);
@@ -29,6 +34,10 @@
   top: 0;
 }
 
+.options-seen-menuphone{
+  transition: left 0.5s;
+}
+
 @media (min-width: 768px) { 
   .options-seen-menuphone {
       display: none;
@@ -37,17 +46,19 @@
 
 @media (max-width: 768px) {
   .options-seen-menuphone{
-      padding: 0.5rem 1rem;
-      box-sizing: border-box;
-      background-color: var(--background);
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+
+  .left{
+    left: 250px;
   }
 
   .options-seen-menuphone i {
-      font-size: 1.4em;
-  }
-
-  .container-body{
-      display: flex;
-      flex-direction: column;
+    padding: 0.5rem 1rem;
+    box-sizing: border-box;
+    font-size: 1.4em;
+    cursor: pointer;
   }
 }

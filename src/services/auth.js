@@ -12,8 +12,8 @@ const signInByToken = async () => {
     return await axios.get(process.env.REACT_APP_API+'login/', { headers : {'Content-Type': 'application/json', 'access-token': token} });
 }
 
-const createAccount = async (body) =>{
-    return await axios.get(process.env.REACT_APP_API+'create/', body);
+const createAccount = async (username, password) =>{
+    return await axios.post(process.env.REACT_APP_API+'create/', {username: username, password: password});
 }
 
 const signOut = async () => {

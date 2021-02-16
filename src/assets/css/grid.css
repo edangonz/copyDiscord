@@ -3,3 +3,9 @@
     justify-content: center;
     align-items: center;
 }
+
+.row {
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+}

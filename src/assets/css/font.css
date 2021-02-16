@@ -28,6 +28,8 @@
 .title{
     font-size: 0.8em;
     text-transform: uppercase;
+    padding: 0.5rem 0.5rem 1rem 0.5rem;
+    white-space: nowrap;
 }
 
 .title--body{

@@ -4,11 +4,11 @@ import './Wait.css'
 
 import { Spring } from 'react-spring/renderprops'
 
-export default function Wait (props) {
+export default function Wait () {
     const [show_wait, setshow_wait] = useState(true);
     setTimeout(() => setshow_wait(false), 1750);
     
-    const transitions = useTransition(props.show_wait && show_wait, null, {
+    const transitions = useTransition(show_wait, null, {
         from: { opacity: 1, width: '0px' },
         enter: { opacity: 1, width: window.innerWidth + 'px' },
         leave: { opacity: 0},
