@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
-import logo from '../../../logo.svg';
+import logo from '../../../../logo.svg';
 
 import { Link } from "react-router-dom";
 import Menu from './Menu';
 
-import { subject_friends$ } from '../../../observer/connected_friends';
+import { subject_friends$ } from '../../../../observer/connected_friends';
 
-const { openChatConfiguration } = require('../../../services/auth');
+const { openChatConfiguration } = require('../../../../services/auth');
 
 export default function Friends(props) {
     function MenuFunction(props){

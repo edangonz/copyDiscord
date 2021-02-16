@@ -1,8 +1,8 @@
 import React from 'react';
-import logo from '../../../logo.svg';
-import { subject_update_friends$ } from '../../../observer/connected_friends';
-import { subjectRequestFriends$ } from '../../../observer/notice_friend';
-const { getRequestFriend, aceptRequestFriend, declineRequestFriend } =  require('../../../services/requestService');
+import logo from '../../../../logo.svg';
+import { subject_update_friends$ } from '../../../../observer/connected_friends';
+import { subjectRequestFriends$ } from '../../../../observer/notice_friend';
+const { getRequestFriend, aceptRequestFriend, declineRequestFriend } =  require('../../../../services/requestService');
 
 export default class Pending extends React.Component {
     constructor(props){
@@ -18,14 +18,16 @@ export default class Pending extends React.Component {
     }
 
     componentDidMount(){
+        /*
         this.getRequest();
 
         this.observabe = subjectRequestFriends$.asObservable()
-            .subscribe(() => this.getRequest());
+            .subscribe(() => this.getRequest());*/
     }
 
-    componentWillUnmount(){
+    componentWillUnmount(){/*
         this.observabe.unsubscribe();
+        */
     }
 
     getRequest(){

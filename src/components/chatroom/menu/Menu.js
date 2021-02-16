@@ -1,7 +1,5 @@
 import React  from 'react';
 
-import { Link } from "react-router-dom";
-
 import { connected_friend, subject_friends$, subject_update_friends$ } from '../../../observer/connected_friends';
 import './Menu.css';
 import Profile from './Profile';
@@ -17,11 +15,14 @@ export default class Menu extends React.Component {
     super(props);
 
     this.state = {
+      seenMenu: true,
       selected: window.location.href.split('/chat/')[1],
       list_friends: undefined
     }
 
     this.getConnectedFriends = this.getConnectedFriends.bind(this);
+    
+    console.log("se crea")
   }
 
   componentDidMount(){/*
@@ -64,11 +65,15 @@ export default class Menu extends React.Component {
 
   render(){
     return (
-      <div className={`container ${(this.props.seenMenu)?'hiden':''}`}>
-        {/*${(this.props.menuphone)?'seen-menuphone':''}*/}
-        <ButtonsMenu/>
-        <Contacts/>
-        <Profile current_user={this.props.current_user}/>
+      <div className={`container-move ${(!this.state.seenMenu)?'noseen':'max-container'}`}>
+        <div className="container">
+          <ButtonsMenu/>
+          <Contacts/>
+          <Profile current_user={this.props.current_user}/>
+        </div>
+        <div className={`options-seen-menuphone ${(this.state.seenMenu)?'max':''}`} onClick={() => this.setState({seenMenu: !this.state.seenMenu})}>
+          <i className="fas fa-bars"></i>
+        </div>
       </div>
     );
   }

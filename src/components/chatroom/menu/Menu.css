@@ -4,11 +4,9 @@
     display: flex;
     height: 100vh;
     flex-direction: column;
-    transition: width 0.5s;
 }
 
 .container-menu{
-    width: 234px;
     margin: 0;
     padding: 0 0.5rem;
     padding-top: 0.5rem;
@@ -26,85 +24,59 @@
 .container-contact::-webkit-scrollbar {
     display: none;
 }
-  
-  /* Hide scrollbar for IE, Edge and Firefox */
+
 .container-contact {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
 .container-profile {
     background-color: var(--profile);
-    padding: 0.5rem;
 }
 
-@media (max-width: 768px) { 
-    .hiden {
-        width: 0;
-    }
-}
-
-/*
-.profile{
-    width: 100%;
-}
-
-.menu{
-    padding: 0.5rem;
-    box-sizing: border-box;
-    border-radius: 0.3rem;
-    background-color: rgba(0,0,0,0.5);
-}
-
-.mini-menu{
-    width: 150px;
-    position: absolute;
-    right: 0;
-}
-
-.menu .option{
-    width: 100%;
-    padding: 0.5rem;
-    border-radius: 0.3rem;
-    box-sizing: border-box;
-    cursor: pointer;
-    font-size: 0.9em;
-    color: var(--font-primary);
-}
-
-.menu .option:hover{
-    background-color: rgba(255,255,255, 0.3);
-}
-
-.option.option-delete:hover{
-    background-color: var(--red);
-}
-
-.option.option-delete:hover span{
-    color: var(--font-primary);
-}
-
-.option.option-delete span{
+.logout{
     color: var(--red);
 }
 
-@media (max-width: 768px) { 
-    .background-button{
+@media (max-width: 768px) {
+    .container-move{
         position: absolute;
-        top: 0;
+        z-index: 10;
         left: 0;
-        background-color: rgba(0, 0, 0, 0.5);
-        height: 100vh;
-        width: 100vw;
+        transition: left 0.5s;
+
+        display: flex;
     }
 
-    .container{
-        position: absolute;
+    .max-container {
+        width: 100%;
+    }
+
+    .noseen {
         left: -250px;
     }
 
-    .seen-menuphone{
-        left: 0;
+    .options-seen-menuphone{
+        height: 40px;
+    }
+
+    .max{
+        flex-grow: 1;
+        height: 100vh;
+        background-color: rgba(0, 0, 0, 0.4);
+        transition: background-color 0.5s;
+    }
+
+    .options-seen-menuphone i {
+        padding: 0.5rem 1rem;
+        box-sizing: border-box;
+        font-size: 1.4em;
+        cursor: pointer;
     }
 }
-*/
+
+@media (min-width: 768px) {
+    .options-seen-menuphone{
+      display: none;
+    }
+}

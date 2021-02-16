@@ -12,14 +12,15 @@ const signInByToken = async () => {
     return await axios.get(process.env.REACT_APP_API+'login/', { headers : {'Content-Type': 'application/json', 'access-token': token} });
 }
 
+//create acount with usename and password
 const createAccount = async (username, password) =>{
     return await axios.post(process.env.REACT_APP_API+'create/', {username: username, password: password});
 }
 
+//end session user
 const signOut = async () => {
     document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
     window.location.reload();
-    return undefined;
 }
 
 const openChatConfiguration = async (_id, id_friend) => {

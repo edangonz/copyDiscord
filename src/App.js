@@ -1,11 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './App.css';
-import LoginPage from './components/page/LoginPage/LoginPage'
+import LoginPage from './components/page/loginPage/LoginPage'
 import Wait from './components/wait_page/Wait';
 import Notification from './components/chatroom/notification/Notification';
 import Messages from './components/messages/Messages';
-import Friend from './components/friend-page/Friend';
+import Friend from './components/page/friendPage/FriendPage';
 import Menu from './components/chatroom/menu/Menu';
 
 import {useSelector} from 'react-redux'
@@ -19,8 +19,6 @@ import {
 
 export default function App() {
   const user = useSelector(store => store.user);
-  const [seenMenu, setSeenMenu] = useState(true);
-  //document.cookie = "token=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
 
   const PrivateRoute = ({ children, ...rest }) => {
     return (
@@ -40,22 +38,11 @@ export default function App() {
       {/*user._id && <Wait/>*/}
 
       <Router>
-        <div className={`ChatRoom`}>
-            {user._id && <Menu
-              current_user={user}
-              seenMenu={seenMenu}
-            />}
+        <div className="ChatRoom">
+          {user._id && <Menu current_user={user}/>}
         
           <div className="container-body">
-            {
-            <div className={`options-seen-menuphone ${(!seenMenu)?'left':''}`}>
-              <i className="fas fa-bars" onClick={() => setSeenMenu(!seenMenu)}></i>
-            </div>}
-            
-            {/*<div className={(menuphone)?'background-button':''} onClick={() => setmenuphone(false)}></div>*/}
-            
             <Switch>
-
               <Route path="/login">
                 <LoginPage/>
               </Route>
@@ -66,7 +53,7 @@ export default function App() {
                 </PrivateRoute>
               */}
               <PrivateRoute path="/">
-                {/*<Friend current_user={user}/>*/}
+                <Friend user={user}/>
               </PrivateRoute>
                 
             </Switch>

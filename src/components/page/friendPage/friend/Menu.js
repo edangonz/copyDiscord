@@ -1,8 +1,8 @@
 import React from 'react';
 import {useTransition, animated} from 'react-spring'
-import { subject_update_friends$ } from '../../../observer/connected_friends'
+import { subject_update_friends$ } from '../../../../observer/connected_friends'
 
-const { deleteFriend } = require('../../../services/friends');
+const { deleteFriend } = require('../../../../services/friends');
 
 export default function Menu(props) {
     

@@ -4,6 +4,8 @@ import { useHistory } from "react-router-dom";
 import logo from '../../../logo.svg';
 import {useTransition, animated} from 'react-spring'
 
+const { signOut } = require('../../../services/auth');
+
 export default function Profile(props){
     const [seenmenu, setseenmenu] = useState(false);
 
@@ -19,18 +21,16 @@ export default function Profile(props){
 
     const logout= () => {
       history.replace(from);
-      props.logout()
-      window.location.reload();
+      signOut();
     }
 
+    /* onMouseLeave={() => setseenmenu(false)} */
     return (
-        <div className="container-profile" onMouseLeave={() => setseenmenu(false)}>
+        <div className="container-profile">
           {transitions.map(({ item, key, props }) =>
             item && <animated.div key={key} style={props} className="container-menu">
-              <div className="menu">
-                <div className="option" onClick={() => logout()}>
-                  <span>Cerrar sesion</span>
-                </div>
+              <div className="contact contact--button" onClick={() => logout()}>
+                <span className="logout">Cerrar sesion</span>
               </div>
             </animated.div>
           )}

@@ -1,7 +1,7 @@
 import React from 'react'
 import Friends from '../friend/Friends'
 
-const { searchFriends, sendFriendRequest } = require('../../../services/friends');
+const { searchFriends, sendFriendRequest } = require('../../../../services/friends');
 
 export default class Newfriend extends React.Component{
     constructor(props){

@@ -1,10 +1,9 @@
 import React from 'react'
-import { connected_friend, subject_friends$ } from '../../observer/connected_friends';
+import { connected_friend, subject_friends$ } from '../../../observer/connected_friends';
 import './Friend.css'
 
 import Friends from './friend/Friends'
 import Newfriend from './new_friend/Newfriend';
-
 import Pending from './pending/Pending';
 
 export default class Friend extends React.Component {
@@ -21,22 +20,27 @@ export default class Friend extends React.Component {
     }
 
     componentDidMount(){
+        /*
         this.observable = subject_friends$.asObservable()
             .subscribe(() => this.setState({ list_friends: connected_friend }));
         this.setState({ list_friends: connected_friend })
+        */
     }
     
     componentWillUnmount(){
+        /*
         this.observable.unsubscribe();
+        */
+       console.log("desmontado")
     }
 
     getSection(page){
         switch(page) {
             case 'Conectados':
               return <Friends connect={true} list_friends={Array.from(this.state.list_friends.values())}
-                current_user={this.props.current_user}/>;
+                user={this.props.user}/>;
             case 'Amigos':
-              return <Friends list_friends={Array.from(this.state.list_friends.values())} current_user={this.props.current_user}/>;
+              return <Friends list_friends={Array.from(this.state.list_friends.values())} user={this.props.user}/>;
             case 'Pendiente':
                 return <Pending/>;
             case 'Añadir amigo':
