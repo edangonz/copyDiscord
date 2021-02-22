@@ -31,24 +31,21 @@ export default function Friends(props) {
     return (
         <>
             <h3 className="text title title--body">Todos los amigos - {props.list_friends.length}</h3>
-            {props.list_friends && props.list_friends.map((f, index) =><div key={index}>
-                {(!props.connect || f.id_session) && <div className="contact contact--friend contact--friends"
-                    onClick={() => props.search?props.action(f):''}>
-                    <div className="logo-container">
-                        {f.id_session?<div className="point-connected"></div>:''}
-                        <img src={logo} alt="profile" className="logo"/>
+            {props.list_friends && props.list_friends.map((f, index) =>
+            <div key={index}>
+                <div className="contact contact--friend" onClick={() => props.action(f)}>
+                    <div className="row">
+                    {f.id_session?<div className="point-connected"></div>:''}
+                      <img className="contact__avatar" src={logo} alt="profile potho"/>
+                      <span className="text username">{f.username}</span>
                     </div>
-                    <div className="contact--friends__text">
-                        <p className="text text--friend username">{f.username}</p>
-                        <p className="text username">{f.id_session?'Conectado':'Desconectado'}</p>
-                    </div>
-                    {!props.search && <div className="contact--friends__icon">
-                        <Link to={'/chat/'+f._id} className="icon" onClick={() => openChat(f._id)}>
+                    <div className="contact--friends__icon">
+                        {/*<Link to={'/chat/' + f._id} className="icon" onClick={() => openChat(f._id)}>
                             <i className="fas fa-comment-alt"></i>
-                        </Link>
+                        </Link>*/}
                         <MenuFunction id_user={f._id} />
-                    </div>}
-                </div>}
+                    </div>
+                </div>
             </div>)}
         </>
     );

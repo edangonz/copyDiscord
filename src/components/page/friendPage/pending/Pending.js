@@ -18,8 +18,8 @@ export default class Pending extends React.Component {
     }
 
     componentDidMount(){
-        /*
         this.getRequest();
+        /*
 
         this.observabe = subjectRequestFriends$.asObservable()
             .subscribe(() => this.getRequest());*/
@@ -60,11 +60,13 @@ export default class Pending extends React.Component {
             <>
             <h3 className="text title title--body">Solicitudes de amistad - {this.state.list_users.length}</h3>
             {this.state.list_users.map((f, index) =>
-                <div key={index} className="contact contact--friend contact--friends">
-                    <img src={logo} alt="profile" className="logo"/>
-                    <div className="contact--friends__text">
+                <div key={index} className="contact contact--friend">
+                    <div className="row">
+                      <img className="contact__avatar" src={logo} alt="profile potho"/>
+                      <div className="column">   
                         <p className="text text--friend username">{f.username}</p>
-                        <p className="text username" style={{fontSize: '0.618em'}}>Solicitud de amistad entrante</p>
+                        <p className="text text--friend username" style={{fontSize: '0.618em'}}>Solicitud de amistad entrante</p>
+                      </div>
                     </div>
                     <div className="contact--friends__icon">
                         <div className="icon check" onClick={() => this.aceptRequest(f._id)}>

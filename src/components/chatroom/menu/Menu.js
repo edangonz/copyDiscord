@@ -21,8 +21,6 @@ export default class Menu extends React.Component {
     }
 
     this.getConnectedFriends = this.getConnectedFriends.bind(this);
-    
-    console.log("se crea")
   }
 
   componentDidMount(){/*

@@ -23,7 +23,6 @@ export default function userReducer(state = user, action) {
 export const singInUser = (username, password, history) => async (dispatch, getState) => {
     try {
         const response = await signIn(username, password)
-        console.log(response)
         if(response.data.code === 100) {
             dispatch({
                 type: LOGIN,

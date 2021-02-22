@@ -1,4 +1,5 @@
 import { getData, getCookie, postData, deleteData } from "./curl";
+import axios from 'axios';
 
 const getFriends = async () => {
     let token = getCookie(document.cookie);
@@ -19,17 +20,9 @@ const deleteFriend = async (filter) => {
 const searchFriends = async (filter) => {
     let token = getCookie(document.cookie);
     if(token)
-        return await postData(process.env.REACT_APP_API+'friend/search/',{'Content-Type': 'application/json', 'access-token': token}, {username: filter});
+        return await axios.post(process.env.REACT_APP_API+'friend/search', {username: filter}, { headers : {'Content-Type': 'application/json', 'access-token': token} });
     else
-        return {error: 1010};
-}
-
-const sendFriendRequest = async (user) => {
-    let token = getCookie(document.cookie);
-    if(token)
-        return await postData(process.env.REACT_APP_API+'request/', {'Content-Type': 'application/json', 'access-token': token}, user);
-    else
-        return {code: 408};
+        return {code: 109};
 }
 
 const getDataChat = async (filter) => {
@@ -43,7 +36,6 @@ const getDataChat = async (filter) => {
 export {
     getFriends,
     searchFriends,
-    sendFriendRequest,
     getDataChat,
     deleteFriend,
 }

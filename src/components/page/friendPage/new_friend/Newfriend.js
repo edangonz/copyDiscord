@@ -1,7 +1,9 @@
 import React from 'react'
 import Friends from '../friend/Friends'
 
-const { searchFriends, sendFriendRequest } = require('../../../../services/friends');
+const { searchFriends } = require('../../../../services/friends');
+const { sendFriendRequest } = require('../../../../services/requestService');
+const { getMessage } = require('../../../../services/message');
 
 export default class Newfriend extends React.Component{
     constructor(props){
@@ -33,8 +35,8 @@ export default class Newfriend extends React.Component{
     search(filter){
         searchFriends(filter)
             .then((response) => {
-                if(response.code !== 204)
-                    this.setState({list_user: response.body})
+                if(response.data.code === 201)
+                    this.setState({list_user: response.data.body})
             });
     }
 
@@ -44,26 +46,8 @@ export default class Newfriend extends React.Component{
 
     onSubmit(e) {
         e.preventDefault();
-        sendFriendRequest({_id: this.state.contact_selected._id})
-            .then(response => {
-            switch (response.code) {
-                case 401:
-                    this.setState({message: {color: 'var(--green)', message: `Se ha enviado su solicitud de amistad a ${this.state.contact_selected.username}.`}});
-                    break;
-                case 406:
-                    this.setState({message: {color: 'var(--green)', message: 'Ustedes ya son amigos.'}});
-                    break;
-                case 405:
-                    this.setState({message: {color: 'var(--green)', message: 'Existe una solicitud de amistada pendiente.'}});
-                break;
-                case 408:
-                    this.setState({message: {color: 'var(--red)', message: 'Error interno intente mas tarde.'}});
-                    break;
-                default:
-                    this.setState({message: {color: 'var(--font-secondary)', message: 'Enviar solicitud de amistad entrante.'}});
-                    break;
-            }
-        });
+        sendFriendRequest(this.state.contact_selected._id)
+            .then(response => this.setState({message : getMessage(response.data.code)}));
     }
 
     render(){
@@ -83,7 +67,6 @@ export default class Newfriend extends React.Component{
 
                 <Friends 
                     action={this.selectFriend}
-                    search={true}
                     list_friends={this.state.list_user}/>
             </>
         );

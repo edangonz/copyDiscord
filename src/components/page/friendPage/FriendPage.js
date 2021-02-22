@@ -31,7 +31,6 @@ export default class Friend extends React.Component {
         /*
         this.observable.unsubscribe();
         */
-       console.log("desmontado")
     }
 
     getSection(page){
