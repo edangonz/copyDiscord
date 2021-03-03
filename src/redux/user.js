@@ -7,12 +7,17 @@ const LOGIN_BY_TOKEN = 'LOGIN_USER_BY_TOKEN';
 const ERROR = "ERROR";
 
 export default function userReducer(state = user, action) {
+    let temp;
     switch (action.type) {
         case LOGIN:
             document.cookie=`token=${action.payload['access-token']}; path=/;`
-            return {...state, ...action.payload}
+            temp = {...action.payload};
+            temp.friends = undefined;
+            return {...state, ...temp}
         case LOGIN_BY_TOKEN:
-            return {...state, ...action.payload}
+            temp = {...action.payload};
+            temp.friends = undefined;
+            return {...state, ...temp}
         case ERROR:
             return {...state, error: action.payload}
         default:

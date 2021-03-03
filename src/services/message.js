@@ -1,4 +1,4 @@
-const getMessage = (code) => {
+const getMessage = (code, data) => {
     switch (code) {
         case 100:
             break;
@@ -21,7 +21,7 @@ const getMessage = (code) => {
         case 109:
             break;
         case 401:
-            return {color: 'var(--green)', message: `Se ha enviado su solicitud de amistad a ${this.state.contact_selected.username}.`};
+            return {color: 'var(--green)', message: `Se ha enviado su solicitud de amistad a ${data.username}.`};
         case 406:
             return {color: 'var(--green)', message: 'Ustedes ya son amigos.'};
         case 405:

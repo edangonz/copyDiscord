@@ -1,14 +1,19 @@
 import React, { useState } from 'react';
 import logo from '../../../../logo.svg';
 
-import { Link } from "react-router-dom";
+/*import { Link } from "react-router-dom";*/
 import Menu from './Menu';
 
-import { subject_friends$ } from '../../../../observer/connected_friends';
+/*import { subject_friends$ } from '../../../../observer/connected_friends';*/
 
-const { openChatConfiguration } = require('../../../../services/auth');
+import { useDispatch } from 'react-redux'
+import { updateFriends } from '../../../../redux/friends'
+
+const { openChatFriend } = require('../../../../services/auth');
 
 export default function Friends(props) {
+    const dispatch = useDispatch();
+
     function MenuFunction(props){
         const [seenmenu, setseenmenu] = useState(false);
 
@@ -19,13 +24,9 @@ export default function Friends(props) {
             </div>)
     }
 
-    const openChat = (_id) => {
-        if(!props.current_user.configuration.chat_open.includes(_id))
-            openChatConfiguration(props.current_user.configuration._id, _id)
-                .then(() => {
-                    props.current_user.configuration.chat_open.push(_id);
-                    subject_friends$.next();
-                })
+    const openChat = (_id, state) => {
+        if(!state)
+            openChatFriend(_id).then(() => {dispatch(updateFriends())});
     }
 
     return (
@@ -33,17 +34,17 @@ export default function Friends(props) {
             <h3 className="text title title--body">Todos los amigos - {props.list_friends.length}</h3>
             {props.list_friends && props.list_friends.map((f, index) =>
             <div key={index}>
-                <div className="contact contact--friend" onClick={() => props.action(f)}>
+                <div className="contact contact--friend" onClick={() => openChat(f._id, f.state_open)}>
                     <div className="row">
-                    {f.id_session?<div className="point-connected"></div>:''}
+                    {f.id_session && <div className="point-connected"></div>}
                       <img className="contact__avatar" src={logo} alt="profile potho"/>
                       <span className="text username">{f.username}</span>
                     </div>
-                    <div className="contact--friends__icon">
-                        {/*<Link to={'/chat/' + f._id} className="icon" onClick={() => openChat(f._id)}>
+                    <div className="contact__icon">
+                        {/*<Link to={'/chat/' + f._id} className="icon">
                             <i className="fas fa-comment-alt"></i>
                         </Link>*/}
-                        <MenuFunction id_user={f._id} />
+                        <MenuFunction id_user={f._id}/>
                     </div>
                 </div>
             </div>)}

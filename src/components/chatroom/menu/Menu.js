@@ -36,9 +36,10 @@ export default class Menu extends React.Component {
   }
 
   componentWillUnmount(){
+    /*
     this.observable_friends.unsubscribe();
     this.observable_update_friends.unsubscribe();
-    connected_friend.clear();
+    connected_friend.clear();*/
   }
 
   async getConnectedFriends(){

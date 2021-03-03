@@ -47,7 +47,7 @@ export default class Newfriend extends React.Component{
     onSubmit(e) {
         e.preventDefault();
         sendFriendRequest(this.state.contact_selected._id)
-            .then(response => this.setState({message : getMessage(response.data.code)}));
+            .then(response => this.setState({message : getMessage(response.data.code, this.state.contact_selected)}));
     }
 
     render(){

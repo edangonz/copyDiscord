@@ -24,6 +24,8 @@
   cursor: pointer;
   box-sizing: border-box;
   border-radius: 0.3rem;
+
+  max-width: 800px;
 }
 
 .contact--button:hover, .contact--friend:hover{
@@ -51,4 +53,18 @@
 
 .contact--friend:hover .mini-icon{
   opacity: 1;
+}
+
+.contact__icon {
+  display: flex;
+  padding: 0.5rem;
+}
+
+.contact__icon .icon{
+  padding: 0 0.75rem;
+  transition: transform 0.2s;
+}
+
+.contact__icon .icon:hover{
+  transform: scale(1.1);
 }

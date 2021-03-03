@@ -9,7 +9,10 @@ const signIn = async (username, password) => {
 //sign account by token
 const signInByToken = async () => {
     let token = getCookie(document.cookie);
-    return await axios.get(process.env.REACT_APP_API+'login/', { headers : {'Content-Type': 'application/json', 'access-token': token} });
+    if(token)
+        return await axios.get(process.env.REACT_APP_API+'login/', { headers : {'Content-Type': 'application/json', 'access-token': token} });
+    else
+        return {code : 103};
 }
 
 //create acount with usename and password
@@ -23,20 +26,20 @@ const signOut = async () => {
     window.location.reload();
 }
 
-const openChatConfiguration = async (_id, id_friend) => {
+const openChatFriend = async (_id) => {
     let token = getCookie(document.cookie);
     if(token)
-        return await putData(process.env.REACT_APP_API+'configure/', {'Content-Type': 'application/json', 'access-token': token}, {_id: _id, id_friend: id_friend});
+        return await axios.patch(process.env.REACT_APP_API+'friend/chat_open/', {_id: _id}, {headers : {'Content-Type': 'application/json', 'access-token': token}});
     else
-        return {error: 1010};
+        return {code : 103};
 }
 
-const closeChatConfiguration = async(_id, id_friend) => {
+const closeChatFriend = async(_id, id_friend) => {
     let token = getCookie(document.cookie);
     if(token)
-        return await deleteData(process.env.REACT_APP_API+'configure/', {'Content-Type': 'application/json', 'access-token': token}, {_id: _id, id_friend: id_friend});
+        return await axios.patch(process.env.REACT_APP_API+'friend/chat_close/', {_id: _id}, {headers : {'Content-Type': 'application/json', 'access-token': token}});
     else
-        return {error: 1010};
+        return {code : 103};
 }
 
 export {
@@ -44,6 +47,6 @@ export {
     signOut,
     signInByToken,
     createAccount,
-    openChatConfiguration,
-    closeChatConfiguration,
+    openChatFriend,
+    closeChatFriend,
 }
