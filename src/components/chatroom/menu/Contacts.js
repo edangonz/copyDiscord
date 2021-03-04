@@ -9,27 +9,23 @@ import { updateFriends } from '../../../redux/friends'
 
 const { closeChatFriend } = require('../../../services/auth');
 
-export default function Contacts(props) {
+export default function Contacts() {
   const [selected, setselected] = useState(0)
   const friends = useSelector(store => store.friends.friends);
   const dispatch = useDispatch();
 
   const closeChat = (_id) => {
-    closeChatFriend(_id).then(() => {dispatch(updateFriends())});
+    closeChatFriend(_id).then(() => dispatch(updateFriends()));
   }
 
     return (
         <div className="container-menu container-contact">
           <h3 className="text title">mensajes directos</h3>
             {
-              /*this.state.list_friends && Array.from(this.state.list_friends.values())*/
               friends.map((element, index) => 
-                /*(this.props.current_user.configuration.chat_open.includes(element._id)) &&*/
                   element.state_open && <div key={index}
                   className={`contact contact--friend ${(selected===element._id)?'selected':''}`}>
-                    <Link className="row"
-                      /*onClick={() => setselected(element._id)}*/
-                      to={'/chat/' + element._id}>
+                    <Link className="row" to={'/chat/' + element._id_chat}>
                       <img className="contact__avatar" src={logo} alt="profile potho"/>
                       <span className={`text username ${(selected===element._id)?'text--selected':''}`}>{element.username}</span>
                     </Link>

@@ -19,11 +19,11 @@ export default class Chat extends React.Component{
     }
 
     getData(){
-        getDataChat(this.props.friend.id_chat)
+        getDataChat(this.props.current_friend.id_chat)
             .then((response) => {
                 if(response.code === 500){
                     this.setState({list_messages: response.body.list_messages, previous_id_chat: response.body.previous_id_chat})
-                    ChatService.setChat(response.body, this.props.friend._id);
+                    ChatService.setChat(response.body, this.props.current_friend._id);
                     if(this.state.list_messages.length < 20)
                         this.getPreviousDataChat();
                     this.messagesEnd.scrollTo(0, this.messagesEnd.scrollHeight);
@@ -48,7 +48,7 @@ export default class Chat extends React.Component{
                 this.getPreviousDataChat();
         }
     }
-
+    /*
     componentDidMount(){
         this.timeset = setTimeout(() => this.getData(), 250);
         this.observable = subject_chat$.asObservable()
@@ -70,21 +70,21 @@ export default class Chat extends React.Component{
         this.observable.unsubscribe();
         window.onscroll = null;
     }
-
+    */
     render(){
         return (
             <div className="container-messages">
-                <h2 className="container-messages__title">{this.props.friend.username} <div></div></h2>
+                <h2 className="container-messages__title">{this.props.current_friend.username} <div></div></h2>
                 <div className="container-messages__chat"
                     onScroll={(e) => this.getMoreData(e)}
                     ref={(el) => { this.messagesEnd = el }}>
                     {this.state.list_messages && this.state.list_messages.map((m, index) => 
-                    <div className={`container-messages__chat__message ${(m.onwer!==this.props.friend._id)?'onwer_container':''}`}
+                    <div className={`container-messages__chat__message ${(m.onwer!==this.props.current_friend._id)?'onwer_container':''}`}
                         key={index}>
                         <img src={logo} alt="profile user"/>
                         <div className="container-messages__chat__message__body">
                             <h4 className="text text--name">
-                                {(m.onwer===this.props.friend._id)?this.props.friend.username: 'Yo'}
+                                {(m.onwer===this.props.current_friend._id)?this.props.current_friend.username: 'Yo'}
                                 <span className="font-small">{(new Date(m.date)).toDateString()}</span>
                             </h4>
                             <p className="text text--mesage">{m.message}</p>

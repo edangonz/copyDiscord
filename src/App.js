@@ -47,17 +47,15 @@ export default function App() {
                 <LoginPage/>
               </Route>
 
-              {/*
-                <PrivateRoute path="/chat/:id">
-                  <Messages/>
-                </PrivateRoute>
-              */}
+              <PrivateRoute path="/chat/:id">
+                <Messages/>
+              </PrivateRoute>
+              
               <PrivateRoute path="/">
                 <Friend user={user}/>
               </PrivateRoute>
                 
-            </Switch>
-            
+            </Switch>            
               {/*
             <div className="notification">
               {user && <Notification/>} 
