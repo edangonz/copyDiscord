@@ -5,14 +5,35 @@ import logo from '../../../logo.svg';
 import { useSelector} from 'react-redux'
 
 import { useDispatch } from 'react-redux'
-import { updateFriends } from '../../../redux/friends'
+import { updateFriends, userTyping } from '../../../redux/friends'
+
+import { initSocket } from '../../../services/socketChat';
+
+import { addMessage } from '../../../redux/chat'
 
 const { closeChatFriend } = require('../../../services/auth');
 
-export default function Contacts() {
+export default function Contacts(props) {
   const [selected, setselected] = useState(0)
   const friends = useSelector(store => store.friends.friends);
   const dispatch = useDispatch();
+
+  const action = (TYPE, data) => {
+    switch (TYPE) {
+      case "ADDCHATFILE":
+        const id = data._id;
+        data._id = undefined;
+        dispatch(addMessage(data, id))
+        break;
+      case "TYPING":
+        dispatch(userTyping(data.state, data._id_friend))
+        break;
+      default:
+        break;
+    }
+  }
+
+  initSocket(props.user, action)
 
   const closeChat = (_id) => {
     closeChatFriend(_id).then(() => dispatch(updateFriends()));

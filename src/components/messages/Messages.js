@@ -13,12 +13,11 @@ import { getChatFile } from '../../redux/chat'
 export default function Messages(){
     let { id } = useParams();
     const current_friend = useSelector(store => store.current_friend);
-    const friends = useSelector(store => store.friends);
     
     const dispatch = useDispatch()
 
     if(current_friend._id_chat !== id)
-        dispatch(update_current_friend(friends.friends, id))
+        dispatch(update_current_friend(id))
     
     dispatch(getChatFile(id))
 
@@ -26,7 +25,7 @@ export default function Messages(){
         <div className="list-friends">
             {/*friend={connected_friend.get(id)}*/}
             <Chat current_friend={current_friend}/>
-            {/*<Newmessage/>*/}
+            <Newmessage/>
         </div>
     );
 }

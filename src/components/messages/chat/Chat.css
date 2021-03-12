@@ -1,5 +1,5 @@
 .container-messages{
-    height: 88vh;
+    height: 86vh;
     flex-grow: 1;
     box-sizing: border-box;
     background-color: var(--main);
@@ -110,5 +110,10 @@
     .container-messages__chat__message img{
         width: 55px;
         height: 55px;
+    }
+    
+    .container-messages__title {
+        padding: 0.5rem 0.75rem;
+        padding-left: 55px;
     }
 }

@@ -1,5 +1,5 @@
 .container-form{
-    height: 12vh;
+    height: 14vh;
     background-color: var(--main);
     padding: 1rem;
     box-sizing: border-box;
@@ -13,4 +13,10 @@
 
 .container-form input:focus{
     border: none;
+}
+
+.font-small{
+    margin-top: 0.75rem;
+    margin-bottom: 0.25rem;
+    min-height: 14px;
 }

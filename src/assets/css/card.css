@@ -68,3 +68,9 @@
 .contact__icon .icon:hover{
   transform: scale(1.1);
 }
+
+@media (max-width: 768px) {
+  .contact--friend .mini-icon{
+    opacity: 1;
+  }
+}

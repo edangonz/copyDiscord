@@ -8,6 +8,7 @@ const friends = {
 
 const LOGIN = 'LOGIN_USER';
 const LOGIN_BY_TOKEN = 'LOGIN_USER_BY_TOKEN';
+const TYPING = "TYPING";
 const ERROR = "ERROR";
 const UPDATE_FRIENDS = "Update friends"
 
@@ -19,6 +20,13 @@ export default function friendReducer(state = friends, action) {
             return {...state, ...action.payload.friends}
         case UPDATE_FRIENDS:
             return {...action.payload}
+        case TYPING:
+            for (let f of state.friends){
+                if (f._id === action.payload.id) {
+                    f.typing = action.payload.state;
+                }
+            }
+            return {...state}
         default:
             return state;
     }
@@ -73,3 +81,17 @@ export const registerAccount = (username, password, history) => async (dispatch,
     }
 }
 */
+
+export const userTyping = (state, id) => async (dispatch, getState) => {
+    try {
+        dispatch({
+            type: TYPING,
+            payload: { state : state, id : id }
+        })
+    } catch (error) {
+        dispatch({
+            type: ERROR,
+            payload: undefined
+        });
+    }
+}

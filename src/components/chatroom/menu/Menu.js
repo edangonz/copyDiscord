@@ -1,29 +1,28 @@
 import React  from 'react';
 
-import { connected_friend, subject_friends$, subject_update_friends$ } from '../../../observer/connected_friends';
+//import { connected_friend, subject_friends$, subject_update_friends$ } from '../../../observer/connected_friends';
 import './Menu.css';
 import Profile from './Profile';
-import ChatService from '../../../services/chat';
 import ButtonsMenu from './ButtonsMenu';
 import Contacts from './Contacts';
 
-const { getFriends } =  require('../../../services/friends');
-const { closeChatConfiguration } = require('../../../services/auth');
+//const { getFriends } =  require('../../../services/friends');
+//const { closeChatConfiguration } = require('../../../services/auth');
 
 export default class Menu extends React.Component {
   constructor(props){
     super(props);
 
     this.state = {
-      seenMenu: true,
+      seenMenu: false,
       selected: window.location.href.split('/chat/')[1],
       list_friends: undefined
     }
 
-    this.getConnectedFriends = this.getConnectedFriends.bind(this);
+    //this.getConnectedFriends = this.getConnectedFriends.bind(this);
   }
-
-  componentDidMount(){/*
+/*
+  componentDidMount(){
     this.observable_friends = subject_friends$.asObservable()
       .subscribe(() => this.setState({ list_friends: connected_friend }));
 
@@ -32,14 +31,13 @@ export default class Menu extends React.Component {
     
     
     this.getConnectedFriends()
-      .then(() => ChatService.initSocket(this.props.current_user));*/
+      .then(() => ChatService.initSocket(this.props.current_user));
   }
-
   componentWillUnmount(){
-    /*
+    
     this.observable_friends.unsubscribe();
     this.observable_update_friends.unsubscribe();
-    connected_friend.clear();*/
+    connected_friend.clear();
   }
 
   async getConnectedFriends(){
@@ -61,13 +59,13 @@ export default class Menu extends React.Component {
         subject_friends$.next();
       })
   }
-
+*/
   render(){
     return (
       <div className={`container-move ${(!this.state.seenMenu)?'noseen':'max-container'}`}>
         <div className="container">
           <ButtonsMenu/>
-          <Contacts/>
+          <Contacts user={this.props.current_user}/>
           <Profile current_user={this.props.current_user}/>
         </div>
         <div className={`options-seen-menuphone ${(this.state.seenMenu)?'max':''}`} onClick={() => this.setState({seenMenu: !this.state.seenMenu})}>
