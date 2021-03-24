@@ -3,11 +3,13 @@ import { connect } from "react-redux";
 import './Newmessage.css'
 import { emitMessage, typing } from '../../../services/socketChat';
 
-const mapStateToProps  = function (state) {
+const mapStateToProps  = function (state, ownprops) {
     return (
         {
             typing_friends : state.current_friend.typing,
-            current_friend : state.current_friend
+            current_friend : state.current_friend,
+            url_image : ownprops.url_image,
+            removeImage : ownprops.removeImage,
         }
     )
 }
@@ -19,9 +21,10 @@ function Newmessage(props){
 
     const addMessage = (e) => {
         e.preventDefault();
-        if(formValue)
-            emitMessage(formValue, props.current_friend._id_chat, props.current_friend._id);
+        if(formValue || props.file)
+            emitMessage(formValue, props.current_friend._id_chat, props.current_friend._id, props.file);
         setFormValue('');
+        props.removeImage();
     }
 
     const is_typing = (e) => {
@@ -42,8 +45,11 @@ function Newmessage(props){
     }
 
     return (
-        <form className="container-form" onSubmit={addMessage}>
-            <h3 className="font-small">{(props.typing_friends)?`${props.current_friend.username} esta escribiendo...`:""}</h3>
+        <form className={`container-form ${(props.url_image)?'image':''}`} onSubmit={addMessage}>
+            {props.typing_friends && <h3 className="font-small typing">
+                {(props.typing_friends)?`${props.current_friend.username} esta escribiendo...`:""}
+            </h3>}
+            {props.url_image && <img className="image" src={props.url_image} alt="nada"></img>}
             <input type="text"
             placeholder={`Enviar un mensaje a ${props.current_friend.username}`}
             value={formValue}

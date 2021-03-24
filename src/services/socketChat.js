@@ -13,19 +13,19 @@ audio.load();
 var socket;
 
 const initSocket = (user, action) => {
-  //friends: JSON.stringify(user) , { query: {...user}}
-  let token = getCookie(document.cookie)
-  
-  if(token)
-    socket = io.connect('http://localhost:5001/', { query: {...user, token: token}});
+  if(!socket){
+    let token = getCookie(document.cookie)
+    
+    if(token)
+      socket = io.connect('http://localhost:5001/', { query: {...user, token: token}});
 
-  socket.on('message', (data) => {
-    action("ADDCHATFILE", data)
-  });
+    socket.on('message', (data) => {
+      action("ADDCHATFILE", data)
+    });
 
-  socket.on('typing', (data) => {
-    action('TYPING', data)
-  });
+    socket.on('typing', (data) => {
+      action('TYPING', data)
+    });
 /*
     this.socket.on('friends_connected', (newfriend) => {
       connected_friend.get(newfriend._id).id_session = newfriend.id_session;
@@ -38,8 +38,9 @@ const initSocket = (user, action) => {
 
     //this.socket.on('notification', (status) => notification$.next(status));
     //this.socket.on('notification_friend', () => subjectRequestFriends$.next());
-    //this.socket.on('new_message', (message) => this.addMessage(message));
+    //this.socket.on('new_message', (message) => this.addMessage(message));}
   }
+}
 
 const endSocket = () => {
   socket.disconnect();
@@ -53,8 +54,8 @@ const endSocket = () => {
     }
   }
 */
-const emitMessage = (message, _id, _id_friend) => {
-  socket.emit('message', {message: message, _id : _id, _id_friend : _id_friend})
+const emitMessage = (message, _id, _id_friend, file) => {
+  socket.emit('message', {message: message, _id : _id, _id_friend : _id_friend, file : file})
 }
 
 const typing = (_id_friend, state) => {

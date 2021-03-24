@@ -16,8 +16,6 @@ import {
 const { getCookie } =  require('../../../services/curl');
 
 export default function LoginPage() {
-    //const [message, setMessage] = useState(undefined);
-    
     let history = useHistory();
     let location = useLocation();
 
@@ -38,21 +36,21 @@ export default function LoginPage() {
         dispatch(registerAccount(username, password, history))
     }
 
-        return (
-            <div className="main-container center">
-                <Spring
-                    from={{ opacity: 0, transform: 'translateY(-100px)' }}
-                    to={{ opacity: 1, transform: 'translateY(0)' }}>
-                    {props =>
-                        <FormLogin
-                            onSubmit={onSubmit}
-                            onSumitRegister={onSumitRegister}
-                            message={user.error}
-                            props={props}/>
-                    }
-                </Spring>
-                <Bubbles/>
-            </div>
-        )
+    return (
+        <div className="main-container center">
+            <Spring
+                from={{ opacity: 0, transform: 'translateY(-100px)' }}
+                to={{ opacity: 1, transform: 'translateY(0)' }}>
+                {props =>
+                    <FormLogin
+                        onSubmit={onSubmit}
+                        onSumitRegister={onSumitRegister}
+                        message={user.error}
+                        props={props}/>
+                }
+            </Spring>
+            <Bubbles/>
+        </div>
+    )
     
 }

@@ -2,8 +2,8 @@ import React from 'react';
 
 import './App.css';
 import LoginPage from './components/page/loginPage/LoginPage'
-import Wait from './components/wait_page/Wait';
-import Notification from './components/chatroom/notification/Notification';
+//import Wait from './components/wait_page/Wait';
+//import Notification from './components/chatroom/notification/Notification';
 import Messages from './components/messages/Messages';
 import Friend from './components/page/friendPage/FriendPage';
 import Menu from './components/chatroom/menu/Menu';

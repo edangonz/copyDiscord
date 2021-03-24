@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { connected_friend, subject_friends$ } from '../../../observer/connected_friends';
 import './Friend.css'
 
 import Friends from './friend/Friends'
@@ -12,21 +11,7 @@ export default function Friend(props) {
     const [menuSelected, setmenuSelected] = useState('Amigos');
     const friends = useSelector(store => store.friends);
     const options = ['Conectados', 'Amigos', 'Pendiente', 'Añadir amigo'];
-/*
-    componentDidMount(){
-        
-        this.observable = subject_friends$.asObservable()
-            .subscribe(() => this.setState({ list_friends: connected_friend }));
-        this.setState({ list_friends: connected_friend })
-        
-    }
-    
-    componentWillUnmount(){
-        
-        this.observable.unsubscribe();
-        
-    }
-*/
+
     const getSection = (page) => {
         switch(page) {
             case 'Conectados':
@@ -42,7 +27,6 @@ export default function Friend(props) {
                 return <p>Algo salio mal</p>;
         }
     }
-
     
     return (
         <div className="container-friend">

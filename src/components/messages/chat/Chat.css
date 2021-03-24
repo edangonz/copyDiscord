@@ -1,8 +1,14 @@
 .container-messages{
-    height: 86vh;
+    height: 92vh;
     flex-grow: 1;
     box-sizing: border-box;
     background-color: var(--main);
+    display: flex;
+    flex-direction: column;
+}
+
+.container-messages.image {
+    height: 82vh;
 }
 
 .container-messages__title{
@@ -25,7 +31,7 @@
     flex-direction: column;
     padding: 0.5rem;
     overflow-y: scroll;
-    max-height: 80vh;
+    height: 100%;
 }
 
 .container-messages__chat__message{
@@ -94,15 +100,7 @@
     margin: 0;
 }
 
-@media (max-width: 768px) { 
-    .container-messages{
-        max-height: 82vh;
-    }
-
-    .container-messages__chat{
-        max-height: 73vh;
-    }
-    
+@media (max-width: 768px) {
     .container-messages__chat__message{
         padding: 3px 60px;
     }

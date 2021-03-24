@@ -4,8 +4,6 @@ import logo from '../../../../logo.svg';
 import { Link } from "react-router-dom";
 import Menu from './Menu';
 
-/*import { subject_friends$ } from '../../../../observer/connected_friends';*/
-
 import { useDispatch } from 'react-redux'
 import { updateFriends } from '../../../../redux/friends'
 

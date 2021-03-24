@@ -1,11 +1,9 @@
 import React from 'react';
 import logo from '../../../logo.svg';
 import './Notification.css'
-import notification$ from '../../../observer/notification';
 import { Spring } from 'react-spring/renderprops'
-import { subject_update_friends$ } from '../../../observer/connected_friends';
 
-const { deleteNotification, getNotifications } = require('../../../services/notificationservice');
+//const { deleteNotification, getNotifications } = require('../../../services/notificationservice');
 
 export default class Notification extends React.Component{
     constructor(){
@@ -21,7 +19,7 @@ export default class Notification extends React.Component{
     }
 
     componentDidMount(){
-        this.observable = notification$.asObservable()
+        /*this.observable = notification$.asObservable()
             .subscribe((code) => {
                 if(code === 402 || code === 206)
                     subject_update_friends$.next();
@@ -29,16 +27,16 @@ export default class Notification extends React.Component{
                     getNotifications()
                         .then(response => this.setState({notifications: response.body}));}
             });
-        notification$.next();
+        notification$.next();*/
     }
 
     componentWillUnmount(){
         this.observable.unsubscribe();
     }
 
-    removeNotification(_id){
+    removeNotification(_id){/*
         deleteNotification(_id)
-            .then(() => notification$.next());
+            .then(() => notification$.next());*/
     }
 
     getTiming(date){

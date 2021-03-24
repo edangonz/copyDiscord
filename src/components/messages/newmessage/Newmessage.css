@@ -1,8 +1,16 @@
 .container-form{
-    height: 14vh;
+    height: 8vh;
     background-color: var(--main);
     padding: 1rem;
+    padding-top: 0rem;
     box-sizing: border-box;
+    position: relative;
+}
+
+.container-form.image{
+    height: 18vh;
+    padding: 1rem;
+    padding-top: 0rem;
 }
 
 .container-form input{
@@ -15,8 +23,18 @@
     border: none;
 }
 
-.font-small{
-    margin-top: 0.75rem;
-    margin-bottom: 0.25rem;
+.typing{
+    margin: 0 0.1rem;
     min-height: 14px;
+    display: inline-block;
+    position: absolute;
+    top: -14px;
+    background-color: var(--main);
+}
+
+.image{
+    border-radius: 0.5rem;
+    height: 60px;
+    padding: 0.3rem;
+    box-sizing: border-box;
 }

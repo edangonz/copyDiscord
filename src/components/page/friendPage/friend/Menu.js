@@ -1,11 +1,9 @@
 import React from 'react';
 import {useTransition, animated} from 'react-spring'
-import { subject_update_friends$ } from '../../../../observer/connected_friends'
 
 const { deleteFriend } = require('../../../../services/friends');
 
 export default function Menu(props) {
-    
     const transitions = useTransition(props.seenmenu, null, {
         from: { opacity: 0, transform: 'scale(0.8)' },
         enter: { opacity: 1, transform: 'scale(1)' },
@@ -13,12 +11,12 @@ export default function Menu(props) {
         config: {duration: 100}
     })
 
-    const removeFriend = () => {
+    const removeFriend = () => {/*
         deleteFriend({_id: props.id_user})
             .then((response) =>{
                 if(response.code === 206)
                     subject_update_friends$.next();
-            });
+            });*/
     }
 
     return (

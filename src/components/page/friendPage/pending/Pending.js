@@ -2,12 +2,8 @@ import React from 'react';
 import logo from '../../../../logo.svg';
 
 import {useDispatch} from 'react-redux'
-
 import { updateFriends } from '../../../../redux/friends'
-/*
-import { subject_update_friends$ } from '../../../../observer/connected_friends';
-import { subjectRequestFriends$ } from '../../../../observer/notice_friend';
-*/
+
 const { aceptRequestFriend, declineRequestFriend } =  require('../../../../services/requestService');
 
 export default function Pending(props) {
@@ -29,8 +25,8 @@ export default function Pending(props) {
             });
     }
 
-        return (
-            <>
+    return (
+        <>
             <h3 className="text title title--body">Solicitudes de amistad - {props.pending.length}</h3>
             {props.pending.map((f, index) =>
                 <div key={index} className="contact contact--friend">
@@ -52,5 +48,5 @@ export default function Pending(props) {
                 </div>)
             }
         </>
-        );
+    );
 }
