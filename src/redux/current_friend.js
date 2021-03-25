@@ -7,7 +7,7 @@ const current_friend = {
 
 const SELECT_FRIEND = "SELECTED_FRIEND";
 const TYPING = "TYPING";
-const ERROR = "ERROR";
+const ERROR = "ERROR_CURRENT_FRIEND";
 
 export default function FriendChatReducer(state = current_friend, action) {
     switch (action.type) {

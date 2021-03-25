@@ -2,7 +2,7 @@ import React, { useEffect } from 'react'
 import logo from '../../../logo.svg'
 import './Chat.css'
 
-import {useSelector, useDispatch} from 'react-redux'
+import { useDispatch} from 'react-redux'
 
 import { addChatNewFile } from '../../../redux/chat'
 import { connect } from "react-redux";
@@ -66,13 +66,14 @@ function Chat (props){
                 {props.messages && props.messages.map((m, index) => 
                 <div className={`container-messages__chat__message ${(m.onwer !== props.current_friend._id)?'onwer_container':''}`}
                     key={index}>
-                    <img src={logo} alt="profile user"/>
+                    <img className="image_profile" src={logo} alt="profile user"/>
                     <div className="container-messages__chat__message__body">
                         <h4 className="text text--name">
                             {(m.onwer===props.current_friend._id)?props.current_friend.username: 'Yo'}
                             <span className="font-small">{(new Date(m.date)).toDateString()}</span>
                         </h4>
-                        <p className="text text--mesage">{m.message}</p>
+                        {m.message && <p className="text text--mesage">{m.message}</p>}
+                        {m.file && <img className="image_message" src={m.file} alt="imagen"></img>}
                     </div>
                 </div>
                 )}

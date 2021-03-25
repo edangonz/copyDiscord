@@ -5,7 +5,7 @@ const chat = {};
 const ADDCHATFILE = "ADD_CHAT_FILE";
 const ADDCHATNEWFILE = "ADD_CHAT_NEW_FILE";
 const ADDNEWMESSAGE = "ADD_NEW_MESSAGE";
-const ERROR = "ERROR";
+const ERROR = "ERROR_CHAT";
 
 export default function chatFileReducer(state = chat, action) {
     switch (action.type) {
@@ -19,7 +19,7 @@ export default function chatFileReducer(state = chat, action) {
             return {...state};
         case ADDNEWMESSAGE:
             state[action.payload.id].messages.push(action.payload.new_message)
-            state[action.payload.id].messages = [...action.payload.messages]
+            state[action.payload.id].messages = [...state[action.payload.id].messages]
             return {...state}
         default:
             return state;

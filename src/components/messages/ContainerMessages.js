@@ -42,10 +42,9 @@ export default class ContainerMessages extends React.Component{
     
         if (e.dataTransfer.files && e.dataTransfer.files.length > 0) {
             let temp_image = e.dataTransfer.files[0]
-            if(temp_image && (temp_image.type === 'image/jpeg' || temp_image.type === 'image/png')){
+            if(temp_image && (temp_image.type === 'image/jpeg' || temp_image.type === 'image/png'))
                 this.setState({url_image : URL.createObjectURL(temp_image), file : temp_image});
-                console.log(temp_image);
-            }
+                
             e.dataTransfer.clearData()
             this.dragCounter = 0
         }
@@ -73,7 +72,7 @@ export default class ContainerMessages extends React.Component{
 
     removeImage = () => {
         if(this.state.url_image)
-            this.setState({ url_image : undefined })
+            this.setState({ url_image : undefined, file : undefined})
     }
 
     render(){

@@ -9,7 +9,7 @@ const friends = {
 const LOGIN = 'LOGIN_USER';
 const LOGIN_BY_TOKEN = 'LOGIN_USER_BY_TOKEN';
 const TYPING = "TYPING";
-const ERROR = "ERROR";
+const ERROR = "ERROR_FRIEND";
 const UPDATE_FRIENDS = "Update friends"
 
 export default function friendReducer(state = friends, action) {
