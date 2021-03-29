@@ -73,7 +73,7 @@ function Chat (props){
                             <span className="font-small">{(new Date(m.date)).toDateString()}</span>
                         </h4>
                         {m.message && <p className="text text--mesage">{m.message}</p>}
-                        {m.file && <img className="image_message" src={m.file} alt="imagen"></img>}
+                        {m.file && <img onClick={() => {props.openImage(m.file)}} className="image_message" src={m.file} alt="imagen"></img>}
                     </div>
                 </div>
                 )}

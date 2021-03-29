@@ -17,7 +17,7 @@ export default function Wait () {
     return (
     <>
         {transitions.map(({ item, key, props }) =>
-            item && <animated.div key={key} style={props} className="wait-container">
+            item && <animated.div key={key} style={props} className="wait-container full-container">
                 <Spring
                     from={{ opacity: 0}}
                     to={{ opacity: 1}}>

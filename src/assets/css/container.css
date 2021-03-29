@@ -3,3 +3,29 @@
     height: 100vh;
     overflow: hidden;
 }
+
+.full-container{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 50;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (min-width: 768px){
+    .container-full-image {
+        height: 80vh;
+    }
+}
+
+@media (max-width: 768px) {
+    .container-full-image {
+        width: 87vw;
+    }
+}

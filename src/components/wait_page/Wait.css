@@ -1,13 +1,5 @@
 .wait-container{
-    position: absolute;
-    width: 100vw;
-    height: 100vh;
     background-color: #2f3136;
-    z-index: 50;
-
-    display: flex;
-    justify-content: center;
-    align-items: center;
 }
 
 .wait__text{

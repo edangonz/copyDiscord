@@ -1,11 +1,13 @@
 import React from 'react'
 import Chat from './chat/Chat'
 import Newmessage from './newmessage/Newessage'
+import Visorimage from './Visor_Image'
 
 export default class ContainerMessages extends React.Component{
     state = {
         dragging: false,
         url_image : undefined,
+        url_visor_image : undefined,
         file : undefined
     }
 
@@ -52,6 +54,15 @@ export default class ContainerMessages extends React.Component{
         this.setState({dragging: false})
     }
 
+    selectImage = (e) => {
+        e.preventDefault()
+        e.stopPropagation()
+    
+        let temp_image = e.target.files[0]
+        if(temp_image && (temp_image.type === 'image/jpeg' || temp_image.type === 'image/png'))
+            this.setState({url_image : URL.createObjectURL(temp_image), file : temp_image});
+    }
+
     componentDidMount() {
         this.dragCounter = 0
 
@@ -75,12 +86,21 @@ export default class ContainerMessages extends React.Component{
             this.setState({ url_image : undefined, file : undefined})
     }
 
+    openImage = (url_image) => {
+        this.setState({url_visor_image: url_image})
+    }
+
     render(){
         return(
             <div ref={this.dropRef} className={`${(this.state.dragging)? 'dragging': ''}`} >
-                <Chat url_image={this.state.url_image !== undefined}/>
-                <Newmessage url_image={this.state.url_image} file={this.state.file} removeImage={this.removeImage}/>
+                {this.state.url_visor_image && <Visorimage closeImage={this.openImage} url_image={this.state.url_visor_image}/>}
+                <Chat openImage={this.openImage} url_image={this.state.url_image !== undefined}/>
+                <Newmessage
+                    url_image={this.state.url_image}
+                    file={this.state.file}
+                    selectImage={this.selectImage}
+                    removeImage={this.removeImage}/>
             </div>
         );
     }
-} 
+}

@@ -46,14 +46,20 @@ function Newmessage(props){
 
     return (
         <form className={`container-form ${(props.url_image)?'image':''}`} onSubmit={addMessage}>
-            {props.typing_friends && <h3 className="font-small typing">
-                {(props.typing_friends)?`${props.current_friend.username} esta escribiendo...`:""}
-            </h3>}
-            {props.url_image && <img className="image" src={props.url_image} alt="nada"></img>}
-            <input type="text"
-            placeholder={`Enviar un mensaje a ${props.current_friend.username}`}
-            value={formValue}
-            onChange={(e) => is_typing(e.target.value)}/>
+            <div className="input-container">
+                {props.typing_friends && <h3 className="font-small typing">
+                    {(props.typing_friends)?`${props.current_friend.username} esta escribiendo...`:""}
+                </h3>}
+                {props.url_image && <img className="image" src={props.url_image} alt="nada"></img>}
+                <input type="file" accept=".jpg, .jpeg, .png" formControlName="fileUrl" id="fileUrl" onChange={(e) => props.selectImage(e)}></input>
+                <div className="input">
+                    <label for="fileUrl"><i class="fas fa-plus-circle" ></i></label>
+                    <input type="text"
+                    placeholder={`Enviar un mensaje a ${props.current_friend.username}`}
+                    value={formValue}
+                    onChange={(e) => is_typing(e.target.value)}/>
+                </div>
+            </div>
         </form>
     );
 }
